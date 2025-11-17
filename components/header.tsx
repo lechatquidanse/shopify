@@ -31,9 +31,9 @@ export function Header() {
         <nav className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-16 h-16 rounded-lg flex items-center justify-center">
-              <Image src="shopify.png" alt="Stephane EL MANOUNI - Shopify developer" width={128} height={128}/>
+              <Image src="shopify.png" alt="Stéphane EL MANOUNI - Shopify developer" width={128} height={128}/>
             </div>
-            <span className="font-semibold text-lg">Stephane El Manouni</span>
+            <span className="font-semibold text-lg">Stéphane El Manouni</span>
           </div>
 
           <div className="hidden md:flex items-center gap-6">
