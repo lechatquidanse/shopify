@@ -4,9 +4,13 @@ import { useState } from 'react'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
+import { useToast } from '@/hooks/use-toast'
 import { Mail, MessageSquare, Send } from 'lucide-react'
 
 export function Contact() {
+  const { toast } = useToast()
+  const [isSubmitting, setIsSubmitting] = useState(false)
+  
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -14,10 +18,44 @@ export function Contact() {
     message: '',
   })
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
-    // Handle form submission
-    console.log('Form submitted:', formData)
+    setIsSubmitting(true)
+
+    try {
+      const response = await fetch('https://formspree.io/f/xyzllgww', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(formData),
+      })
+      const success = response.ok;
+      
+      if (success) {
+        toast({
+          title: "Message sent successfully!",
+          description: "Thanks for reaching out. I'll get back to you within 24 hours.",
+        })
+        
+        setFormData({
+          name: '',
+          email: '',
+          company: '',
+          message: '',
+        })
+      } else {
+        throw new Error('Failed to send message')
+      }
+    } catch (error) {
+      toast({
+        title: "Failed to send message",
+        description: "Something went wrong. Please try again or email me directly.",
+        variant: "destructive",
+      })
+    } finally {
+      setIsSubmitting(false)
+    }
   }
 
   return (
@@ -46,6 +84,7 @@ export function Contact() {
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -60,6 +99,7 @@ export function Contact() {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -73,6 +113,7 @@ export function Contact() {
                   placeholder="Your company"
                   value={formData.company}
                   onChange={(e) => setFormData({ ...formData, company: e.target.value })}
+                  disabled={isSubmitting}
                 />
               </div>
 
@@ -87,12 +128,13 @@ export function Contact() {
                   value={formData.message}
                   onChange={(e) => setFormData({ ...formData, message: e.target.value })}
                   required
+                  disabled={isSubmitting}
                 />
               </div>
 
-              <Button type="submit" className="w-full" size="lg">
+              <Button type="submit" className="w-full" size="lg" disabled={isSubmitting}>
                 <Send className="w-4 h-4 mr-2" />
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
               </Button>
             </form>
 
@@ -105,7 +147,7 @@ export function Contact() {
                   <div className="space-y-1">
                     <h3 className="font-semibold">Email</h3>
                     <p className="text-sm text-muted-foreground">
-                      hello@shopifydev.com
+                      stephane.elmanouni@gmail.com
                     </p>
                   </div>
                 </div>

@@ -1,4 +1,4 @@
-import { Github, Linkedin, Twitter, ShoppingBag } from 'lucide-react'
+import { Github, Linkedin, ShoppingBag } from 'lucide-react'
 
 export function Footer() {
   return (
@@ -52,7 +52,7 @@ export function Footer() {
             <h4 className="font-semibold">Connect</h4>
             <div className="flex gap-3">
               <a
-                href="https://github.com"
+                href="https://github.com/lechatquidanse"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-colors"
@@ -61,22 +61,13 @@ export function Footer() {
                 <Github className="w-5 h-5" />
               </a>
               <a
-                href="https://linkedin.com"
+                href="https://www.linkedin.com/in/stephane-el-manouni/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-colors"
                 aria-label="LinkedIn"
               >
                 <Linkedin className="w-5 h-5" />
-              </a>
-              <a
-                href="https://twitter.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-muted hover:bg-primary hover:text-primary-foreground rounded-lg flex items-center justify-center transition-colors"
-                aria-label="Twitter"
-              >
-                <Twitter className="w-5 h-5" />
               </a>
             </div>
           </div>

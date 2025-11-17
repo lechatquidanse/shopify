@@ -2,7 +2,8 @@
 
 import { useState, useEffect } from 'react'
 import { Button } from '@/components/ui/button'
-import { ShoppingBag } from 'lucide-react'
+import { Mail, Linkedin, Github } from 'lucide-react'
+import Image from 'next/image'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false)
@@ -27,15 +28,15 @@ export function Header() {
       }`}
     >
       <div className="container mx-auto px-4 py-4">
-        <nav className="flex items-center justify-between">
+        <nav className="flex items-center justify-between gap-4">
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 bg-primary rounded-lg flex items-center justify-center">
-              <ShoppingBag className="w-5 h-5 text-primary-foreground" />
+            <div className="w-16 h-16 rounded-lg flex items-center justify-center">
+              <Image src="shopify.png" alt="Stephane EL MANOUNI - Shopify developer" width={128} height={128}/>
             </div>
-            <span className="font-semibold text-lg">Shopify Dev</span>
+            <span className="font-semibold text-lg">Stephane El Manouni</span>
           </div>
 
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-6">
             <button
               onClick={() => scrollToSection('projects')}
               className="text-sm text-muted-foreground hover:text-foreground transition-colors"
@@ -54,10 +55,43 @@ export function Header() {
             >
               Contact
             </button>
+            
+            <div className="flex items-center gap-3 ml-2">
+              <a
+                href="mailto:stephane.elmanouni@gmail.com"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="Email"
+              >
+                <Mail className="w-4 h-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/stephane-el-manouni/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="w-4 h-4" />
+              </a>
+              <a
+                href="https://github.com/lechatquidanse"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-muted-foreground hover:text-primary transition-colors"
+                aria-label="GitHub"
+              >
+                <Github className="w-4 h-4" />
+              </a>
+            </div>
           </div>
 
-          <Button onClick={() => scrollToSection('contact')}>
+          <Button onClick={() => scrollToSection('contact')} className="hidden md:inline-flex">
             {"Let's Work Together"}
+          </Button>
+
+          {/* Mobile menu button */}
+          <Button onClick={() => scrollToSection('contact')} size="sm" className="md:hidden">
+            Contact
           </Button>
         </nav>
       </div>

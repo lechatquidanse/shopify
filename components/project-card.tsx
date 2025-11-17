@@ -15,7 +15,8 @@ interface Project {
   technologies: string[]
   results: string[]
   image: string
-  icon: LucideIcon
+  icon: LucideIcon,
+  link: string
 }
 
 interface ProjectCardProps {
@@ -35,10 +36,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
 
   return (
     <Card
-      className="group overflow-hidden border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 animate-fade-in-up"
+      className="group overflow-hidden border-border hover:border-primary/50 transition-all duration-300 hover:shadow-xl hover:shadow-primary/5 animate-fade-in-up cursor-pointer"
       style={{ animationDelay: `${index * 100}ms` }}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
+      onClick={() => window.open(project.link, "_blank")}
     >
       <div className="relative aspect-[3/2] overflow-hidden bg-muted">
         <Image
